@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Fizik Platform</title>
+	<style>
+		body{
+			text-align:center;
+		}
+		p{
+			display:inline;
+			font-size:20px;
+		}
+
+		h1{
+			color:aqua;	
+		}
+	</style>
+</head>
+<body>
+<h1>Fizik Projesi Hesaplaması</h1>	
+<p style="margin-right:10px;">Determine your x value:</p>
+<input type="range" id="slider" oninput="sliderFunction()" step="0.01" min="15" max="99" value="50"> <br><br>
+<p style="margin-right:10px;">Determine your l value:</p>
+<input type="number" value="100" onchange="sliderFunction()" id="l" min="50" max="200"> <br><br>
+<p style="margin-right:10px;">Determine your n value:</p>
+<input type="number" value="3" onchange="sliderFunction()" id="n" min="1" max="20"> <br><br>
+Your x value is: <p id="sli"> </p> <br>
+Your y value is: <p id="control"></p> <br><br>	
+<canvas id="myCanvas" width="1500" height="500" style="border:1px solid #d3d3d3; margin:0px;" >
+Your browser does not support the HTML5 canvas tag.</canvas>
+</body>
+<script type="text/javascript">
+var l=document.getElementById("l").value;
+l=37.795276*l;
+var n= document.getElementById("n").value;
+var x=document.getElementById("slider").value;
+var y=Math.sqrt(Math.pow(l,2)-Math.pow(x,2));
+var c = document.getElementById("myCanvas");
+var basew=750;
+var baseh=500;
+document.getElementById("sli").innerHTML=x;
+document.getElementById("control").innerHTML=y.toFixed(2);
+var ctx = c.getContext("2d");
+	for(var i=1; i<=n;i++){
+	if(i%2==1){
+	ctx.setLineDash([5,0]);
+	ctx.beginPath();
+	ctx.moveTo(basew-x, baseh);
+	ctx.lineTo(basew, baseh-y);
+	ctx.lineTo(basew-(-x), baseh);
+	ctx.stroke();
+	ctx.closePath();
+	if(i!=1){
+	ctx.setLineDash([5,8]);
+	ctx.beginPath();
+	ctx.moveTo(basew-x, baseh);
+	ctx.lineTo(basew-(-x), baseh);
+	ctx.stroke();
+	ctx.closePath();
+	ctx.beginPath();
+	ctx.arc(basew, baseh, 3, 0, 2 * Math.PI, true);
+	ctx.closePath();
+	ctx.fill();
+	}
+}
+	if(i%2==0){
+	ctx.setLineDash([5,0]);
+	ctx.beginPath();
+	ctx.moveTo(basew-x, baseh-y);
+	ctx.lineTo(basew, baseh);
+	ctx.lineTo(basew-(-x), baseh-y);
+	ctx.stroke();
+	ctx.closePath();
+	ctx.beginPath();
+	ctx.arc(basew, baseh, 3, 0, 2 * Math.PI, true);
+	ctx.closePath();
+	ctx.fillStyle="black";
+	ctx.fill();
+	}
+	baseh=baseh-y;
+ctx.beginPath();
+	ctx.arc(basew, baseh, 3, 0, 2 * Math.PI, true);
+	ctx.closePath();
+	ctx.fillStyle="black";
+	ctx.fill();
+
+	if(i==n && n%2==0){
+	ctx.setLineDash([5,8]);
+	ctx.beginPath();
+	ctx.moveTo(basew-x, baseh);
+	ctx.lineTo(basew-(-x), baseh);
+	ctx.stroke();
+	ctx.closePath();
+	}
+
+
+}
+ctx.setLineDash([5,0]);
+ctx.beginPath();		
+ctx.rect(basew-l,baseh-l,2*l,l);
+ctx.fillStyle="#FFAA00";
+ctx.fill();
+ctx.closePath();
+
+function sliderFunction(){
+	var l=document.getElementById("l").value;
+	l=37.795276*l;
+	var n= document.getElementById("n").value;
+	basew=750;
+	baseh=500;
+	ctx.clearRect(0,0,1500,500);
+	x =document.getElementById("slider").value;
+	document.getElementById("sli").innerHTML=x;
+	y=Math.sqrt(Math.pow(l,2)-Math.pow(x,2));
+	document.getElementById("control").innerHTML=y.toFixed(2);
+	for(var i=1; i<=n;i++){
+	if(i%2==1){
+	ctx.setLineDash([5,0]);
+	ctx.beginPath();
+	ctx.moveTo(basew-x, baseh);
+	ctx.lineTo(basew, baseh-y);
+	ctx.lineTo(basew-(-x), baseh);
+	ctx.stroke();
+	ctx.closePath();
+	if(i!=1){
+	ctx.setLineDash([5,8]);
+	ctx.beginPath();
+	ctx.moveTo(basew-x, baseh);
+	ctx.lineTo(basew-(-x), baseh);
+	ctx.stroke();
+	ctx.closePath();
+	ctx.beginPath();
+	ctx.arc(basew, baseh, 3, 0, 2 * Math.PI, true);
+	ctx.closePath();
+	ctx.fillStyle="black";
+	ctx.fill();
+	}
+}
+	if(i%2==0){
+	ctx.setLineDash([5,0]);
+	ctx.beginPath();
+	ctx.moveTo(basew-x, baseh-y);
+	ctx.lineTo(basew, baseh);
+	ctx.lineTo(basew-(-x), baseh-y);
+	ctx.stroke();
+	ctx.closePath();
+
+
+	}
+	baseh=baseh-y;
+	ctx.beginPath();
+	ctx.arc(basew, baseh, 3, 0, 2 * Math.PI, true);
+	ctx.closePath();
+	ctx.fillStyle="black";
+	ctx.fill();
+	if(i==n && n%2==0){
+	ctx.setLineDash([5,8]);
+	ctx.beginPath();
+	ctx.moveTo(basew-x, baseh);
+	ctx.lineTo(basew-(-x), baseh);
+	ctx.stroke();
+	ctx.closePath();
+	}
+
+}
+ctx.setLineDash([5,0]);
+ctx.beginPath();		
+ctx.rect(basew-l,baseh-l,2*l,l);
+ctx.fillStyle="#FFAA00";
+ctx.fill();
+ctx.closePath();
+}
+
+
+</script>
+</html>
