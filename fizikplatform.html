@@ -18,9 +18,9 @@
 </head>
 <body>
 <h1>Fizik Projesi Hesaplaması</h1>	
-<p style="margin-right:10px;">Determine your x value:</p>
+<p style="margin-right:10px;">Determine your x value(cm):</p>
 <input type="range" id="slider" oninput="sliderFunction()" step="0.01" min="15" max="99" value="50"> <br><br>
-<p style="margin-right:10px;">Determine your l value:</p>
+<p style="margin-right:10px;">Determine your l value(cm):</p>
 <input type="number" value="100" onchange="sliderFunction()" id="l" min="50" max="200"> <br><br>
 <p style="margin-right:10px;">Determine your n value:</p>
 <input type="number" value="3" onchange="sliderFunction()" id="n" min="1" max="20"> <br><br>
@@ -34,6 +34,7 @@ var l=document.getElementById("l").value;
 l=37.795276*l;
 var n= document.getElementById("n").value;
 var x=document.getElementById("slider").value;
+x = 37.795276*x;
 var y=Math.sqrt(Math.pow(l,2)-Math.pow(x,2));
 var c = document.getElementById("myCanvas");
 var basew=750;
@@ -110,6 +111,7 @@ function sliderFunction(){
 	baseh=500;
 	ctx.clearRect(0,0,1500,500);
 	x =document.getElementById("slider").value;
+	x = 37.795276*x;
 	document.getElementById("sli").innerHTML=x;
 	y=Math.sqrt(Math.pow(l,2)-Math.pow(x,2));
 	document.getElementById("control").innerHTML=y.toFixed(2);
