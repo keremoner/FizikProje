@@ -26,7 +26,7 @@
 <input type="number" value="4" onchange="sliderFunction()" id="n" min="1" max="20"> <br><br>
 <p>x  değeri: </p><p id="sli"> </p> <br>
 <p>y  değeri: </p><p id="control"></p> <br><br>	
-<canvas id="myCanvas" width="1500" height="720" style="border:1px solid #d3d3d3; margin:0px;" >
+<canvas id="myCanvas" width="1500" height="750" style="border:1px solid #d3d3d3; margin:0px;" >
 Your browser does not support the HTML5 canvas tag.</canvas>
 </body>
 <script type="text/javascript">
@@ -39,8 +39,8 @@ x = 37.795276*x;
 var y=Math.sqrt(Math.pow(l,2)-Math.pow(x,2));
 document.getElementById("control").innerHTML=(y/37.795276).toFixed(2)+" cm";
 var c = document.getElementById("myCanvas");
-var basew=720;
-var baseh=720;
+var basew=750;
+var baseh=750;
 
 
 var ctx = c.getContext("2d");
@@ -110,9 +110,9 @@ function sliderFunction(){
 	document.getElementById("slider").max=l;
 	l=37.795276*l;
 	var n= document.getElementById("n").value;
-	basew=720;
-	baseh=720;
-	ctx.clearRect(0,0,1500,720);
+	basew=750;
+	baseh=750;
+	ctx.clearRect(0,0,1500,750);
 	x =document.getElementById("slider").value;
 	document.getElementById("sli").innerHTML=x+" cm";
 	x = 37.795276*x;
